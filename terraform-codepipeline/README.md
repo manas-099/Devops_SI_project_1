@@ -8,7 +8,6 @@ This project successfully provisions a complete CI/CD pipeline using AWS CodePip
 
 ### **Deployment Results:**
 - ✅ **Region**: ap-south-1 (Asia Pacific - Mumbai)
-- ✅ **Account**: 745540666129
 - ✅ **Environment**: Development
 - ✅ **Status**: All resources successfully created and active
 
