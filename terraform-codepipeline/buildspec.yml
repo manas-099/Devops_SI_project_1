@@ -1,0 +1,53 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - echo Build started on `date`
+      - echo Setting up environment variables...
+      
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the application...
+      # Add your build commands here
+      # Example for a Node.js application:
+      # - npm install
+      # - npm run build
+      # - npm test
+      
+      # Example for a Python application:
+      # - pip install -r requirements.txt
+      # - python -m pytest tests/
+      
+      # Example for a Java application:
+      # - mvn clean package
+      
+      - echo Build completed on `date`
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Preparing artifacts...
+      # Create deployment package
+      - mkdir -p build-output
+      - cp -r . build-output/ || true
+      - ls -la build-output/
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build-output
+  name: build-artifacts
+
+cache:
+  paths:
+    - '/root/.m2/**/*'  # For Maven
+    - '/root/.npm/**/*' # For npm
+    - '/root/.cache/**/*' # For pip
+
+environment_variables_in_parameter_store:
+  # Add any environment variables from Parameter Store here
+  # - ENV_VAR_NAME: /path/to/parameter
